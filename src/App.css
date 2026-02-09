@@ -1,0 +1,161 @@
+ 
+  /* ===== Base Reset ===== */
+body{
+margin:0;
+font-family: Arial, sans-serif;
+background:#eef2f7;
+}
+
+/* ===== Header ===== */
+.header{
+width:100%;
+height:120px;
+background:linear-gradient(45deg,#0052ff,#7a00ff);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:2rem;
+border-radius:0 0 25px 25px;
+text-align:center;
+padding:10px;
+}
+
+/* ===== Route Buttons ===== */
+.button-one{
+display:flex;
+justify-content:center;
+gap:15px;
+margin:20px;
+flex-wrap:wrap;
+}
+
+button{
+padding:15px 20px;
+border:none;
+border-radius:12px;
+background:#cfcfcf;
+color:black;
+cursor:pointer;
+font-size:1rem;
+min-width:220px;
+transition:0.25s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* Active Selected Route Button */
+.active-btn{
+background:green;
+color:white;
+}
+
+/* ===== Main Container ===== */
+.main-body{
+display:flex;
+justify-content:center;
+padding-bottom:20px;
+}
+
+/* ===== Bus List Box ===== */
+.body{
+width:800px;
+max-width:95%;
+height:500px;
+overflow-y:auto;
+border-radius:18px;
+padding:15px;
+box-shadow:0 6px 18px rgba(0,0,0,0.2);
+}
+
+/* Selected body background */
+.active-body{
+background: rgb(231, 230, 235);
+}
+
+/* ===== Bus Buttons ===== */
+.bus-btn{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:none;
+border-radius:8px;
+background:white;
+cursor:pointer;
+font-size:1rem;
+transition:0.2s;
+}
+
+.bus-btn:hover
+
+/* ===== Scrollbar Styling ===== */
+.body::-webkit-scrollbar{
+width:8px;
+}
+
+.body::-webkit-scrollbar-thumb{
+background:#888;
+border-radius:5px;
+}
+
+/* ===== Mobile Responsive ===== */
+@media(max-width:600px){
+
+.header{
+font-size:1.3rem;
+height:90px;
+}
+
+button{
+width:90%;
+font-size:0.95rem;
+}
+
+.body{
+height:420px;
+}
+}
+
+
+
+
+
+
+.footer{
+  margin-top:30px;
+  background:#111827;
+  color:white;
+  padding-top:25px;
+}
+
+/* content layout */
+.footer-content{
+  display:flex;
+  justify-content:space-around;
+  flex-wrap:wrap;
+  gap:20px;
+  padding:20px;
+}
+
+.footer-content div{
+  min-width:200px;
+}
+
+.footer h3{
+  margin-bottom:8px;
+}
+
+.footer p{
+  margin:4px 0;
+  font-size:0.95rem;
+}
+
+/* bottom strip */
+.footer-bottom{
+  text-align:center;
+  padding:12px;
+  background:#0b0f1a;
+  font-size:0.9rem;
+}
