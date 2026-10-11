@@ -1,161 +1,652 @@
- 
-  /* ===== Base Reset ===== */
-body{
-margin:0;
-font-family: Arial, sans-serif;
-background:#eef2f7;
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #183b32;
+  background: #eef8f3;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
 }
 
-/* ===== Header ===== */
-.header{
-width:100%;
-height:120px;
-background:linear-gradient(45deg,#0052ff,#7a00ff);
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:2rem;
-border-radius:0 0 25px 25px;
-text-align:center;
-padding:10px;
+* {
+  box-sizing: border-box;
 }
 
-/* ===== Route Buttons ===== */
-.button-one{
-display:flex;
-justify-content:center;
-gap:15px;
-margin:20px;
-flex-wrap:wrap;
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 90% 38%, rgba(207, 241, 224, 0.48), transparent 34rem),
+    #eef8f3;
 }
 
-button{
-padding:15px 20px;
-border:none;
-border-radius:12px;
-background:#cfcfcf;
-color:black;
-cursor:pointer;
-font-size:1rem;
-min-width:220px;
-transition:0.25s;
+button {
+  font: inherit;
 }
 
-button:hover{
-transform:scale(1.05);
+.app-shell {
+  min-height: 100vh;
 }
 
-/* Active Selected Route Button */
-.active-btn{
-background:green;
-color:white;
+.site-header {
+  background: #006b4c;
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(13, 69, 52, 0.14);
 }
 
-/* ===== Main Container ===== */
-.main-body{
-display:flex;
-justify-content:center;
-padding-bottom:20px;
+.header-inner {
+  width: min(100% - 40px, 1000px);
+  min-height: 76px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-/* ===== Bus List Box ===== */
-.body{
-width:800px;
-max-width:95%;
-height:500px;
-overflow-y:auto;
-border-radius:18px;
-padding:15px;
-box-shadow:0 6px 18px rgba(0,0,0,0.2);
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
 }
 
-/* Selected body background */
-.active-body{
-background: rgb(231, 230, 235);
+.brand-icon,
+.section-icon,
+.bus-row-icon,
+.next-bus-icon,
+.clock-icon,
+.footer-mark {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
 }
 
-/* ===== Bus Buttons ===== */
-.bus-btn{
-width:100%;
-padding:12px;
-margin-bottom:10px;
-border:none;
-border-radius:8px;
-background:white;
-cursor:pointer;
-font-size:1rem;
-transition:0.2s;
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: #087252;
+  background: #f1fff7;
 }
 
-.bus-btn:hover
-
-/* ===== Scrollbar Styling ===== */
-.body::-webkit-scrollbar{
-width:8px;
+.brand-icon svg {
+  width: 23px;
+  height: 23px;
 }
 
-.body::-webkit-scrollbar-thumb{
-background:#888;
-border-radius:5px;
+.brand-copy {
+  display: grid;
+  gap: 2px;
 }
 
-/* ===== Mobile Responsive ===== */
-@media(max-width:600px){
-
-.header{
-font-size:1.3rem;
-height:90px;
+.brand-copy strong {
+  font-size: 1rem;
+  letter-spacing: 0.01em;
 }
 
-button{
-width:90%;
-font-size:0.95rem;
+.brand-copy > span {
+  color: #c4e8d7;
+  font-size: 0.78rem;
 }
 
-.body{
-height:420px;
-}
-}
-
-
-
-
-
-
-.footer{
-  margin-top:30px;
-  background:#111827;
-  color:white;
-  padding-top:25px;
+.header-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(231, 255, 242, 0.28);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: #e3fff0;
+  font-size: 0.76rem;
 }
 
-/* content layout */
-.footer-content{
-  display:flex;
-  justify-content:space-around;
-  flex-wrap:wrap;
-  gap:20px;
-  padding:20px;
+.header-status > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6de0a9;
+  box-shadow: 0 0 0 3px rgba(109, 224, 169, 0.15);
 }
 
-.footer-content div{
-  min-width:200px;
+.page-content {
+  width: min(100% - 40px, 1000px);
+  margin: 0 auto;
 }
 
-.footer h3{
-  margin-bottom:8px;
+.intro {
+  padding: 34px 0 22px;
 }
 
-.footer p{
-  margin:4px 0;
-  font-size:0.95rem;
+.eyebrow {
+  margin: 0 0 8px;
+  color: #16815e;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.13em;
 }
 
-/* bottom strip */
-.footer-bottom{
-  text-align:center;
-  padding:12px;
-  background:#0b0f1a;
-  font-size:0.9rem;
+.intro h1 {
+  margin: 0;
+  color: #174a3b;
+  font-size: clamp(1.55rem, 3.5vw, 2rem);
+  letter-spacing: -0.035em;
+}
+
+.intro-copy {
+  margin: 7px 0 0;
+  color: #6b8179;
+  font-size: 0.94rem;
+}
+
+.route-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.route-option {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #d8e9e0;
+  border-radius: 13px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #476259;
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.route-option:hover {
+  transform: translateY(-1px);
+  border-color: #76b99b;
+}
+
+.route-option:focus-visible {
+  outline: 3px solid rgba(21, 139, 97, 0.28);
+  outline-offset: 2px;
+}
+
+.route-option.selected {
+  border-color: #007454;
+  background: #007454;
+  color: #fff;
+  box-shadow: 0 5px 12px rgba(0, 116, 84, 0.15);
+}
+
+.route-arrow {
+  color: #64a98a;
+}
+
+.route-option.selected .route-arrow {
+  color: #b7ecd0;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(250px, 0.8fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.timetable-card,
+.next-bus-card,
+.notice-card {
+  overflow: hidden;
+  border: 1px solid #d8e9e0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 7px 22px rgba(27, 75, 57, 0.06);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #e8f0ec;
+  padding: 15px 17px;
+}
+
+.section-icon {
+  width: 37px;
+  height: 37px;
+  border-radius: 11px;
+  background: #e7f6ed;
+  color: #087653;
+}
+
+.section-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.section-heading h2,
+.next-bus-heading h2 {
+  margin: 0;
+  color: #20463a;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.section-heading p {
+  margin: 4px 0 0;
+  color: #7a8c85;
+  font-size: 0.78rem;
+}
+
+.entry-count {
+  margin-left: auto;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #f0f8f3;
+  color: #58806d;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.departure-note {
+  margin: 12px 14px 0;
+  border-radius: 9px;
+  padding: 10px 12px;
+  background: #eff9f3;
+  color: #37634f;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.bus-list {
+  padding: 2px 15px 6px;
+}
+
+.bus-row {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #edf2ef;
+}
+
+.bus-row:last-child {
+  border-bottom: 0;
+}
+
+.bus-row-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #e8f6ee;
+  color: #087653;
+}
+
+.bus-row-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.bus-color-1 {
+  background: #eaf2ff;
+  color: #2670ca;
+}
+
+.bus-color-2 {
+  background: #fff4e2;
+  color: #d58c0d;
+}
+
+.bus-color-3 {
+  background: #f3edff;
+  color: #7750c7;
+}
+
+.bus-details {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+}
+
+.bus-time {
+  color: #233f35;
+  font-size: 0.9rem;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.bus-name {
+  overflow: hidden;
+  border-radius: 6px;
+  padding: 4px 7px;
+  background: #f0f7f3;
+  color: #416453;
+  font-size: 0.76rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.row-chevron {
+  color: #90a79b;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.sidebar {
+  display: grid;
+  gap: 13px;
+}
+
+.next-bus-card {
+  padding: 16px;
+}
+
+.pinned-next-bus {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+  border-color: #c9e3d4;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 18px rgba(27, 75, 57, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.next-bus-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  margin-bottom: 0;
+}
+
+.clock-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: #e7f6ed;
+  color: #087653;
+}
+
+.clock-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.today-label {
+  display: inline-block;
+  margin-top: 3px;
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: #e9f7ef;
+  color: #28805d;
+  font-size: 0.66rem;
+  font-weight: 650;
+}
+
+.next-bus-details {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  padding: 12px;
+  background: #f5fbf7;
+}
+
+.pinned-next-bus .next-bus-details {
+  flex: 1;
+  padding: 7px 10px;
+}
+
+.next-bus-icon {
+  width: 39px;
+  height: 39px;
+  border-radius: 11px;
+  background: #dff2e7;
+  color: #087653;
+}
+
+.next-bus-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.next-bus-details > div {
+  display: grid;
+  gap: 4px;
+}
+
+.next-bus-details strong {
+  color: #1f4538;
+  font-size: 1rem;
+}
+
+.next-bus-details > div > span {
+  color: #6a8176;
+  font-size: 0.8rem;
+}
+
+.next-bus-route {
+  margin: 0;
+  color: #71877c;
+  font-size: 0.76rem;
+  white-space: nowrap;
+}
+
+.no-upcoming {
+  margin: 0;
+  border-radius: 10px;
+  padding: 12px;
+  background: #f5fbf7;
+  color: #61796e;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.pinned-next-bus .no-upcoming {
+  flex: 1;
+  padding: 8px 10px;
+}
+
+.notice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 14px;
+  background: #f1f8ff;
+  border-color: #d9e9f7;
+}
+
+.notice-icon {
+  display: grid;
+  width: 21px;
+  height: 21px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #3185c9;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 750;
+  font-style: normal;
+}
+
+.notice-card p {
+  margin: 1px 0 0;
+  color: #456b86;
+  font-size: 0.79rem;
+  line-height: 1.5;
+}
+
+.site-footer {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 22px 0 0;
+  border-radius: 14px 14px 0 0;
+  background: #006b4c;
+  color: #e5fff1;
+  font-size: 0.82rem;
+}
+
+.footer-mark svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 760px) {
+  .header-inner,
+  .page-content {
+    width: min(100% - 28px, 560px);
+  }
+
+  .header-inner {
+    min-height: 66px;
+  }
+
+  .intro {
+    padding-top: 26px;
+  }
+
+  .pinned-next-bus {
+    gap: 9px;
+    padding: 9px;
+  }
+
+  .pinned-next-bus .next-bus-heading {
+    gap: 7px;
+  }
+
+  .pinned-next-bus .clock-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .pinned-next-bus .today-label {
+    margin-top: 2px;
+    padding: 2px 6px;
+  }
+
+  .pinned-next-bus .next-bus-details {
+    gap: 7px;
+    padding: 6px;
+  }
+
+  .pinned-next-bus .next-bus-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .pinned-next-bus .next-bus-route {
+    max-width: 28%;
+    overflow: hidden;
+    font-size: 0.68rem;
+    text-overflow: ellipsis;
+  }
+
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-footer {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-inner,
+  .page-content {
+    width: calc(100% - 24px);
+  }
+
+  .header-status {
+    padding: 7px 9px;
+    font-size: 0.68rem;
+  }
+
+  .route-switch {
+    gap: 7px;
+  }
+
+  .pinned-next-bus .next-bus-heading h2 {
+    font-size: 0.87rem;
+  }
+
+  .pinned-next-bus .today-label {
+    font-size: 0.6rem;
+  }
+
+  .pinned-next-bus .next-bus-details strong {
+    font-size: 0.88rem;
+  }
+
+  .pinned-next-bus .next-bus-details > div > span {
+    font-size: 0.68rem;
+  }
+
+  .route-option {
+    min-height: 54px;
+    gap: 5px;
+    padding: 8px 5px;
+    font-size: 0.72rem;
+  }
+
+  .section-heading {
+    padding: 13px;
+  }
+
+  .entry-count {
+    padding: 5px 7px;
+    font-size: 0.65rem;
+  }
+
+  .bus-list {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .bus-row {
+    min-height: 59px;
+    gap: 9px;
+  }
+
+  .bus-details {
+    gap: 7px;
+  }
+
+  .bus-time {
+    font-size: 0.84rem;
+  }
+
+  .bus-name {
+    max-width: 44vw;
+    font-size: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
