@@ -134,7 +134,7 @@ function App() {
 
       <main className="page-content">
         <section className="intro">
-          <p className="eyebrow">LOCAL BUS SERVICE</p>
+          <p className="eyebrow"> REGULER BUS SERVICE</p>
           <h1>Plan your journey</h1>
           <p className="intro-copy">Choose a route to view the bus timetable.</p>
         </section>
@@ -158,9 +158,7 @@ function App() {
           ) : (
             <p className="no-upcoming">No upcoming departure listed today.</p>
           )}
-          <p className="next-bus-route">
-            {active === 1 ? "Kaliyattamukk → Chemmad" : "Chemmad → Kaliyattamukk"}
-          </p>
+         
         </section>
 
         <nav className="route-switch" aria-label="Select bus route">
