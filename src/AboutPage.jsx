@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import { InstallAppButton, OfflineNotice } from "./PwaControls.jsx";
 
 const ABOUT_COPY = {
   en: {
@@ -135,6 +136,7 @@ function AboutPage() {
             </span>
           </a>
           <div className="header-actions">
+            <InstallAppButton />
             <a className="about-home-link" href="/">Timetable</a>
             <button
               className="theme-toggle"
@@ -149,6 +151,8 @@ function AboutPage() {
           </div>
         </div>
       </header>
+
+      <OfflineNotice />
 
       <main className="page-content about-page-content">
         <section className="about-section" data-language={language} aria-labelledby="about-title">
