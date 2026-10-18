@@ -2480,7 +2480,7 @@ html[data-theme="dark"] {
 .favorite-toggle:focus-visible {
   outline: none;
   outline-offset: 0;
-  box-shadow: 0 0 12px rgba(73, 192, 255, 0.58);
+  box-shadow: none;
 }
 
 .install-app-button {
