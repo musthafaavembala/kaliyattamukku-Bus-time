@@ -1,4 +1,4 @@
-const CACHE_NAME = "bus-timer-shell-v1";
+const CACHE_NAME = "bus-timer-shell-v2";
 const PAGE_PATHS = ["/", "/about.html"];
 const CORE_ASSETS = [
   "/manifest.webmanifest",
