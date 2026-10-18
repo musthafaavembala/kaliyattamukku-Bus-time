@@ -41,6 +41,51 @@ function ClockIcon() {
   );
 }
 
+function ThemeIcon({ theme }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+      {theme === "dark" ? (
+        <path
+          d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.6 8.6 0 1 0 20.2 15.2Z"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinejoin="round"
+        />
+      ) : (
+        <>
+          <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
+          <path
+            d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+        </>
+      )}
+    </svg>
+  );
+}
+
+function getDepartureMinutes(time) {
+  const [clock, period] = time.split(" ");
+  const [hour, minute] = clock.split(":").map(Number);
+  return ((hour % 12) + (period === "PM" ? 12 : 0)) * 60 + minute;
+}
+
+function getInitialTheme() {
+  const systemTheme = typeof window.matchMedia === "function"
+    && window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+
+  try {
+    const savedTheme = window.localStorage.getItem("bus-time-theme");
+    return savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+  } catch {
+    return systemTheme;
+  }
+}
+
 function BusRoadAnimation() {
   return (
     <div className="bus-road-scene" aria-hidden="true">
@@ -209,6 +254,7 @@ function BusRoadAnimation() {
 function App() {
   const [active, setActive] = useState(1);
   const [now, setNow] = useState(() => new Date());
+  const [theme, setTheme] = useState(getInitialTheme);
   const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
@@ -222,6 +268,19 @@ function App() {
     const interval = window.setInterval(() => setNow(new Date()), 30_000);
     return () => window.clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      "content",
+      theme === "dark" ? "#061326" : "#d8e8f7",
+    );
+    try {
+      window.localStorage.setItem("bus-time-theme", theme);
+    } catch (error) {
+      console.error("Unable to save the theme preference.", error);
+    }
+  }, [theme]);
 
   useEffect(() => {
     try {
@@ -331,7 +390,7 @@ function App() {
   const normalizedQuery = searchQuery.trim().toLocaleLowerCase();
   const visibleBuses = selectedRoute
     .map((bus, index) => ({ bus, index, id: `route-${active}-bus-${index}` }))
-    .filter(({ bus, index, id }) => {
+    .filter(({ bus, id }) => {
       const matchesQuery = !normalizedQuery || [
         bus.name,
         bus.time,
@@ -347,13 +406,8 @@ function App() {
     .filter(({ label }) => label.toLocaleLowerCase().includes(normalizedQuery))
     .slice(0, 5);
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
-  const nextBus = selectedRoute.find((bus) => {
-    const [time, period] = bus.time.split(" ");
-    const [hour, minute] = time.split(":").map(Number);
-    const departureMinutes = ((hour % 12) + (period === "PM" ? 12 : 0)) * 60 + minute;
-    return departureMinutes >= currentMinutes;
-  });
-
+  const nextBus = selectedRoute.find((bus) => getDepartureMinutes(bus.time) >= currentMinutes);
+  const minutesUntilNextBus = nextBus ? getDepartureMinutes(nextBus.time) - currentMinutes : null;
   const toggleFavorite = (id) => {
     setFavoriteIds((currentIds) =>
       currentIds.includes(id)
@@ -399,17 +453,32 @@ function App() {
   }, [active, recentJumpId, searchQuery, showFavoritesOnly]);
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-theme={theme}>
       <header className="site-header">
         <div className="header-inner">
           <div className="brand">
-            <span className="brand-icon"><BusIcon /></span>
+            <span className="brand-icon">
+              <img src="/arebyan.png" alt="" width="40" height="40" />
+            </span>
             <span className="brand-copy">
               <strong>Kaliyattamukku</strong>
               <span>Bus Timetable</span>
             </span>
           </div>
-          <span className="header-status"><span /> Scheduled timetable</span>
+          <div className="header-actions">
+            <span className="header-status"><span /> Scheduled timetable</span>
+            <a className="header-about-link" href="/about.html">About</a>
+            <button
+              className="theme-toggle"
+              type="button"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+              aria-pressed={theme === "dark"}
+              title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+              onClick={() => setTheme((currentTheme) => currentTheme === "dark" ? "light" : "dark")}
+            >
+              <ThemeIcon theme={theme} />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -438,6 +507,9 @@ function App() {
               <div>
                 <strong>{nextBus.time}</strong>
                 <span>{nextBus.name.trim()}</span>
+                <span className="departure-countdown">
+                  {minutesUntilNextBus === 0 ? "Departing now" : `In ${minutesUntilNextBus} min`}
+                </span>
               </div>
             </div>
           ) : (
