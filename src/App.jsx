@@ -570,6 +570,12 @@ function App() {
           </section>
 
           <aside className="sidebar">
+            {now.getDay() === 0 && (
+              <section className="notice-card" aria-label="Sunday timetable notice">
+                <span className="notice-icon" aria-hidden="true">i</span>
+                <p><strong>Sunday Note :-</strong> There is likely to be only one bus on Sundays.</p>
+              </section>
+            )}
             <section className="notice-card" aria-label="Timetable notice">
               <span className="notice-icon" aria-hidden="true">i</span>
               <p><strong>Note :-</strong> Timings may change depending on traffic or delays.</p>
