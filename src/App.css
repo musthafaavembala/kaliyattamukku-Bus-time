@@ -980,6 +980,28 @@ button {
   line-height: 1.5;
 }
 
+.sunday-alert {
+  position: sticky;
+  top: 74px;
+  z-index: 19;
+  width: min(100% - 40px, 1040px);
+  margin: 10px auto;
+  border-color: #ef9a9a;
+  background: #fff0f0;
+  box-shadow: 0 5px 18px rgba(127, 29, 29, 0.18);
+}
+
+.sunday-alert .notice-icon {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.sunday-alert p,
+.sunday-alert p strong,
+.sunday-alert p span {
+  color: #991b1b;
+}
+
 .about-section {
   overflow: hidden;
   margin: 22px 0 0;
@@ -2165,6 +2187,22 @@ body {
   color: #b7cee8;
 }
 
+.app-shell[data-theme="dark"] .sunday-alert {
+  border-color: #f87171;
+  background: rgba(69, 10, 10, 0.96);
+}
+
+.app-shell[data-theme="dark"] .sunday-alert .notice-icon {
+  background: rgba(248, 113, 113, 0.18);
+  color: #f87171;
+}
+
+.app-shell[data-theme="dark"] .sunday-alert p,
+.app-shell[data-theme="dark"] .sunday-alert p strong,
+.app-shell[data-theme="dark"] .sunday-alert p span {
+  color: #fca5a5;
+}
+
 @media (max-width: 760px) {
   .app-shell {
     background-attachment: scroll, scroll, fixed;
@@ -2174,6 +2212,11 @@ body {
 
   .header-inner,
   .page-content {
+    width: min(100% - 28px, 600px);
+  }
+
+  .sunday-alert {
+    top: 66px;
     width: min(100% - 28px, 600px);
   }
 
@@ -2189,6 +2232,10 @@ body {
 @media (max-width: 480px) {
   .header-inner,
   .page-content {
+    width: calc(100% - 24px);
+  }
+
+  .sunday-alert {
     width: calc(100% - 24px);
   }
 
