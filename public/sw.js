@@ -1,11 +1,10 @@
-const CACHE_NAME = "bus-timer-shell-v2";
+const CACHE_NAME = "bus-timer-shell-v3";
 const PAGE_PATHS = ["/", "/about.html"];
 const CORE_ASSETS = [
   "/manifest.webmanifest",
   "/arebyan.png",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
-  "/assets/bus-background.png",
 ];
 
 self.addEventListener("install", (event) => {
