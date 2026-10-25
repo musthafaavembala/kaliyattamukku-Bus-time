@@ -166,7 +166,7 @@ const routeStops = {
   ],
 };
 
-function SundayAlert({ onClose }) {
+function SundayAlert() {
   return (
     <section
       className="notice-card sunday-alert"
@@ -174,10 +174,7 @@ function SundayAlert({ onClose }) {
       role="status"
     >
       <span className="notice-icon" aria-hidden="true">!</span>
-      <p><strong>Sunday Note :-</strong> <span>There is likely to be only one bus on Sundays.</span></p>
-      <button className="sunday-alert-close" type="button" onClick={onClose} aria-label="Dismiss Sunday notice">
-        <span aria-hidden="true">×</span>
-      </button>
+      <p><strong>ഞായറാഴ്ച അറിയിപ്പ്:</strong> <span>ചിലപ്പോൾ ഒരു ബസ് മാത്രമാണ് ഞായറാഴ്ച സർവീസ് നടത്താൻ സാധ്യതയുള്ളത്.</span></p>
     </section>
   );
 }
@@ -195,7 +192,6 @@ function App() {
   const [storageReady, setStorageReady] = useState(false);
   const [storageMessage, setStorageMessage] = useState("");
   const [recentJumpId, setRecentJumpId] = useState("");
-  const [dismissedSunday, setDismissedSunday] = useState("");
 
   useEffect(() => {
     const refreshClock = () => setNow(new Date());
@@ -352,8 +348,7 @@ function App() {
     .filter(({ label }) => label.toLocaleLowerCase().includes(normalizedQuery))
     .slice(0, 5);
   const indiaTimeParts = getIndiaTimeParts(now);
-  const sundayKey = `${indiaTimeParts.year}-${indiaTimeParts.month}-${indiaTimeParts.day}`;
-  const showSundayAlert = indiaTimeParts.weekday === "Sun" && dismissedSunday !== sundayKey;
+  const showSundayAlert = indiaTimeParts.weekday === "Sun";
   const currentMinutes = getCurrentTimeMinutes(indiaTimeParts);
   const selectedStops = routeStops[active];
   const nextDeparture = getNextDeparture(selectedRoute, currentMinutes);
@@ -451,7 +446,7 @@ function App() {
         </div>
       </header>
 
-      {showSundayAlert && <SundayAlert onClose={() => setDismissedSunday(sundayKey)} />}
+      {showSundayAlert && <SundayAlert />}
       <OfflineNotice />
 
       <nav className="route-switch" aria-label="Select bus route">
